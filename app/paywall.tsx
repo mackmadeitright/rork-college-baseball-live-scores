@@ -119,7 +119,11 @@ export default function PaywallScreen() {
           </Text>
 
           <Text style={[styles.heroSubtitle, { color: theme.textMuted }]}>
-            One-time purchase. Ad-free experience.
+            One-time purchase for an ad-free experience.
+          </Text>
+
+          <Text style={[styles.heroNote, { color: theme.textMuted }]}>
+            All core features remain free.
           </Text>
         </View>
 
@@ -277,6 +281,12 @@ const styles = StyleSheet.create({
 
   heroSubtitle: {
     fontSize: 15,
+  },
+
+  heroNote: {
+    fontSize: 12,
+    marginTop: 4,
+    opacity: 0.8,
   },
 
   featuresCard: {
