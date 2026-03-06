@@ -30,6 +30,7 @@ export default function PaywallScreen() {
     isRestoring,
     isLoadingOfferings,
   } = usePremium();
+
   const { theme, isDark } = useTheme();
   const router = useRouter();
 
@@ -84,18 +85,12 @@ export default function PaywallScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <Stack.Screen
-        options={{
-          title: "",
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen options={{ title: "", headerShown: false }} />
 
       <TouchableOpacity
         onPress={() => router.back()}
         style={[styles.closeBtn, { backgroundColor: theme.surface }]}
         activeOpacity={0.7}
-        testID="paywall-close-btn"
       >
         <X size={20} color={theme.text} />
       </TouchableOpacity>
@@ -110,14 +105,21 @@ export default function PaywallScreen() {
         ]}
       >
         <View style={styles.heroSection}>
-          <View style={[styles.iconContainer, { backgroundColor: isDark ? "#1B4332" : "#DCFCE7" }]}>
+          <View
+            style={[
+              styles.iconContainer,
+              { backgroundColor: isDark ? "#1B4332" : "#DCFCE7" },
+            ]}
+          >
             <Shield size={36} color={isDark ? "#52B788" : "#16A34A"} />
           </View>
+
           <Text style={[styles.heroTitle, { color: theme.text }]}>
             Dugout Premium
           </Text>
+
           <Text style={[styles.heroSubtitle, { color: theme.textMuted }]}>
-            $3.99/year. Ad-free experience.
+            One-time purchase. Ad-free experience.
           </Text>
         </View>
 
@@ -125,20 +127,42 @@ export default function PaywallScreen() {
           {FEATURES.map((feature, index) => (
             <View key={index}>
               {index > 0 && (
-                <View style={[styles.featureDivider, { backgroundColor: theme.separator }]} />
+                <View
+                  style={[
+                    styles.featureDivider,
+                    { backgroundColor: theme.separator },
+                  ]}
+                />
               )}
+
               <View style={styles.featureRow}>
-                <View style={[styles.featureIcon, { backgroundColor: isDark ? "rgba(82,183,136,0.12)" : "rgba(22,163,74,0.08)" }]}>
-                  <feature.icon size={18} color={isDark ? "#52B788" : "#16A34A"} />
+                <View
+                  style={[
+                    styles.featureIcon,
+                    {
+                      backgroundColor: isDark
+                        ? "rgba(82,183,136,0.12)"
+                        : "rgba(22,163,74,0.08)",
+                    },
+                  ]}
+                >
+                  <feature.icon
+                    size={18}
+                    color={isDark ? "#52B788" : "#16A34A"}
+                  />
                 </View>
+
                 <View style={styles.featureText}>
                   <Text style={[styles.featureLabel, { color: theme.text }]}>
                     {feature.label}
                   </Text>
-                  <Text style={[styles.featureDesc, { color: theme.textMuted }]}>
+                  <Text
+                    style={[styles.featureDesc, { color: theme.textMuted }]}
+                  >
                     {feature.desc}
                   </Text>
                 </View>
+
                 <Check size={16} color={isDark ? "#52B788" : "#16A34A"} />
               </View>
             </View>
@@ -146,19 +170,23 @@ export default function PaywallScreen() {
         </View>
 
         <View style={styles.purchaseSection}>
-          <View style={[styles.priceCard, { backgroundColor: isDark ? "#1B4332" : "#F0FDF4", borderColor: isDark ? "#2D6A4F" : "#BBF7D0" }]}>
+          <View
+            style={[
+              styles.priceCard,
+              {
+                backgroundColor: isDark ? "#1B4332" : "#F0FDF4",
+                borderColor: isDark ? "#2D6A4F" : "#BBF7D0",
+              },
+            ]}
+          >
             <Text style={[styles.priceLabel, { color: theme.textMuted }]}>
-              Annual subscription
+              One-time purchase
             </Text>
+
             <View style={styles.priceRow}>
               <Text style={[styles.priceValue, { color: theme.text }]}>
                 {priceLabel}
               </Text>
-              <View style={[styles.priceBadge, { backgroundColor: isDark ? "#2D6A4F" : "#BBF7D0" }]}>
-                <Text style={[styles.priceBadgeText, { color: isDark ? "#A7F3D0" : "#166534" }]}>
-                  Per Year
-                </Text>
-              </View>
             </View>
           </View>
 
@@ -166,7 +194,8 @@ export default function PaywallScreen() {
             style={[
               styles.purchaseBtn,
               { backgroundColor: isDark ? "#52B788" : "#16A34A" },
-              (isPurchasing || isLoadingOfferings) && styles.purchaseBtnDisabled,
+              (isPurchasing || isLoadingOfferings) &&
+                styles.purchaseBtnDisabled,
             ]}
             onPress={handlePurchase}
             disabled={isPurchasing || isLoadingOfferings || !premiumPackage}
@@ -176,7 +205,9 @@ export default function PaywallScreen() {
               <ActivityIndicator size="small" color="#FFFFFF" />
             ) : (
               <Text style={styles.purchaseBtnText}>
-                {isLoadingOfferings ? "Loading..." : `Remove Ads — ${priceLabel}/year`}
+                {isLoadingOfferings
+                  ? "Loading..."
+                  : `Remove Ads — ${priceLabel}`}
               </Text>
             )}
           </TouchableOpacity>
@@ -202,9 +233,8 @@ export default function PaywallScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
+
   closeBtn: {
     position: "absolute",
     top: 54,
@@ -216,16 +246,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     zIndex: 10,
   },
+
   content: {
     flex: 1,
     paddingHorizontal: 20,
     justifyContent: "center",
     paddingBottom: 40,
   },
+
   heroSection: {
     alignItems: "center",
     marginBottom: 28,
   },
+
   iconContainer: {
     width: 72,
     height: 72,
@@ -234,30 +267,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 16,
   },
+
   heroTitle: {
     fontSize: 26,
-    fontWeight: "800" as const,
+    fontWeight: "800",
     letterSpacing: -0.5,
     marginBottom: 6,
   },
+
   heroSubtitle: {
     fontSize: 15,
   },
+
   featuresCard: {
     borderRadius: 14,
     marginBottom: 28,
     overflow: "hidden",
   },
+
   featureRow: {
     flexDirection: "row",
     alignItems: "center",
     padding: 16,
     gap: 12,
   },
+
   featureDivider: {
     height: StyleSheet.hairlineWidth,
     marginLeft: 52,
   },
+
   featureIcon: {
     width: 36,
     height: 36,
@@ -265,69 +304,73 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
   featureText: {
     flex: 1,
     gap: 2,
   },
+
   featureLabel: {
     fontSize: 15,
-    fontWeight: "600" as const,
+    fontWeight: "600",
   },
+
   featureDesc: {
     fontSize: 12,
   },
+
   purchaseSection: {
     gap: 12,
   },
+
   priceCard: {
     borderRadius: 14,
     padding: 16,
     borderWidth: 1.5,
   },
+
   priceLabel: {
     fontSize: 12,
-    fontWeight: "500" as const,
+    fontWeight: "500",
     marginBottom: 4,
   },
+
   priceRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
   },
+
   priceValue: {
     fontSize: 28,
-    fontWeight: "800" as const,
+    fontWeight: "800",
     letterSpacing: -0.5,
   },
-  priceBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 10,
-  },
-  priceBadgeText: {
-    fontSize: 12,
-    fontWeight: "700" as const,
-  },
+
   purchaseBtn: {
     paddingVertical: 16,
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
   },
+
   purchaseBtnDisabled: {
     opacity: 0.6,
   },
+
   purchaseBtnText: {
     color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: "700" as const,
+    fontWeight: "700",
   },
+
   restoreBtn: {
     paddingVertical: 12,
     alignItems: "center",
   },
+
   restoreBtnText: {
     fontSize: 13,
-    fontWeight: "500" as const,
+    fontWeight: "500",
   },
 });
