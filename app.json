@@ -13,7 +13,9 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mackmadeitright.collegebaseball",
+      "bundleIdentifier": "app.rork.college-baseball-live-scores",
+      "buildNumber": "7",
+      "appStoreUrl": "https://apps.apple.com/app/id6759840234",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -25,6 +27,9 @@
       "eas": {
         "projectId": "ad319bbe-75b0-4531-b29d-79775721f26f"
       }
-    }
+    },
+    "plugins": [
+      "expo-image"
+    ]
   }
 }

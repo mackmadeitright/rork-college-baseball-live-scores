@@ -191,6 +191,10 @@ export default function PaywallScreen() {
               <Text style={[styles.priceValue, { color: theme.text }]}>
                 {priceLabel}
               </Text>
+
+              <Text style={[styles.priceNote, { color: theme.textMuted }]}>
+                Less than a cup of coffee ☕
+              </Text>
             </View>
           </View>
 
@@ -346,15 +350,20 @@ const styles = StyleSheet.create({
   },
 
   priceRow: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
-    gap: 10,
+    gap: 2,
   },
 
   priceValue: {
     fontSize: 28,
     fontWeight: "800",
     letterSpacing: -0.5,
+  },
+
+  priceNote: {
+    fontSize: 12,
+    opacity: 0.8,
   },
 
   purchaseBtn: {
